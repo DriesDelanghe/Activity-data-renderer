@@ -8,6 +8,7 @@ import {InvalidLengthException} from "../exceptions/InvalidLengthException";
 export class ScopeArrayBuilder {
 
     private length : number = 1
+    private endDate : Date = new Date()
 
     constructor(private scopeBuilder: ScopeBuilder) {
     }
@@ -24,6 +25,11 @@ export class ScopeArrayBuilder {
         if  (length < 1)
             throw new InvalidLengthException("Length for Scope Array should be larger than 1")
         this.length = length
+        return this
+    }
+
+    WithEndDate(endDate : Date) : ScopeArrayBuilder {
+        this.endDate = endDate
         return this
     }
 

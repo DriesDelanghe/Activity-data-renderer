@@ -12,8 +12,9 @@ export class DateProvider {
         this.setEndDate(new Date())
     }
 
-    setEndDate(endDate: Date){
+    setEndDate(endDate: Date) : DateProvider{
         this.endDate = new Date(endDate.getTime())
+        return this
     }
 
     PastHour() : Date {

@@ -27,11 +27,12 @@ export class ActivityBuilder{
     }
 
     Build() : Activity {
-        const scope = this.scopeArrayBuilder.WithArrayLength(this.getScopeLength()).Build()
+        const randomDate : Date = this.getRandomDate()
+        const scope = this.scopeArrayBuilder.WithArrayLength(this.getScopeLength()).WithEndDate(randomDate).Build()
         let activity = new Activity(scope)
         activity.RecordKey = this.hashProvider.Random()
         activity.Context = this.contextProvider.Random()
-        activity.Timestamp = this.getRandomDate()
+        activity.Timestamp = randomDate
         activity.ETag = this.hashProvider.Random()
         activity.ItemType = "activity"
         activity.OperationId = this.uuidProvider.Get()
