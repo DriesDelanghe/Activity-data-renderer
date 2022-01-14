@@ -18,7 +18,7 @@ if you have already build the project you only need to run `npm run start`
 #### Data is now more customizable
 More fields of an activity object can now be customized to more fit your needs
 - The max length of a scope object can now be set (the length will still be a random length but won't be longer than the max length)
-- The timestamp of the activities can now be set, options are:
+- The timestamp of the activities can now be set. The timespan will be calculated from the current date. options are:
     - Past hour
     - Past day
     - Past week
