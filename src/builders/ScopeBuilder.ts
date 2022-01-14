@@ -24,7 +24,8 @@ export class ScopeBuilder {
     }
 
     WithEndDate(endDate : Date) : ScopeBuilder {
-        this.enddate = endDate
+        console.log("setting scope enddate to ", endDate)
+        this.enddate = new Date(endDate.getTime())
         return this
     }
 

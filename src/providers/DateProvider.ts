@@ -18,14 +18,14 @@ export class DateProvider {
     }
 
     PastHour() : Date {
-        const refDate = new Date()
+        const refDate = new Date(this.endDate.getTime())
         refDate.setHours(refDate.getHours() - 1)
         this.startDate = new Date(refDate.getTime())
         return this.generateRandomDate()
     }
 
     PastDay() : Date {
-        const refDate = new Date()
+        const refDate = new Date(this.endDate.getTime())
         refDate.setHours(0,0,0,0)
         this.startDate = new Date(refDate.getTime())
         return this.generateRandomDate()

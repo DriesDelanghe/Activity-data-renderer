@@ -16,7 +16,7 @@ export class ScopeArrayBuilder {
     Build() {
         let scopeArray : ActivityScope[] = []
         for (let i = 0; i < this.length; i++) {
-            scopeArray = [...scopeArray, this.scopeBuilder.Build()]
+            scopeArray = [...scopeArray, this.scopeBuilder.WithEndDate(this.endDate).Build()]
         }
         return scopeArray
     }
@@ -29,7 +29,7 @@ export class ScopeArrayBuilder {
     }
 
     WithEndDate(endDate : Date) : ScopeArrayBuilder {
-        this.endDate = endDate
+        this.endDate = new Date(endDate.getTime())
         return this
     }
 

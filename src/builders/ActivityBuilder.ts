@@ -51,17 +51,17 @@ export class ActivityBuilder{
     private getRandomDate () : Date {
         switch (this.timespan){
             case DurationOptions.HOUR:
-                return this.dateProvider.PastHour()
+                return this.dateProvider.setEndDate(new Date()).PastHour()
             case DurationOptions.DAY:
-                return this.dateProvider.PastDay()
+                return this.dateProvider.setEndDate(new Date()).PastDay()
             case DurationOptions.WEEK:
-                return this.dateProvider.PastWeek()
+                return this.dateProvider.setEndDate(new Date()).PastWeek()
             case DurationOptions.MONTH:
-                return this.dateProvider.PastMonth()
+                return this.dateProvider.setEndDate(new Date()).PastMonth()
             case DurationOptions.YEAR:
-                return this.dateProvider.PastYear()
+                return this.dateProvider.setEndDate(new Date()).PastYear()
             default:
-                return this.dateProvider.PastYear()
+                return this.dateProvider.setEndDate(new Date()).PastYear()
         }
     }
 
