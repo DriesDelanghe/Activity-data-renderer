@@ -9,6 +9,7 @@ import {InvalidArgumentException} from "../exceptions/InvalidArgumentException";
 import {ResultProvider} from "../providers/ResultProvider";
 import {ReasonBuilder} from "./ReasonBuilder";
 import {DurationOptions} from "../models/Inquirer/OptionEnums/DurationOptions";
+import {SourceSystemProvider} from "../providers/SourceSystemProvider";
 
 
 @Service()
@@ -23,23 +24,25 @@ export class ActivityBuilder{
                 private dateProvider : DateProvider,
                 private uuidProvider: UuidProvider,
                 private resultProvider: ResultProvider,
-                private reasonBuilder: ReasonBuilder) {
+                private reasonBuilder: ReasonBuilder,
+                private sourceSystemProvider: SourceSystemProvider) {
     }
 
     Build() : Activity {
         const randomDate : Date = this.getRandomDate()
         const scope = this.scopeArrayBuilder.WithArrayLength(this.getScopeLength()).WithEndDate(randomDate).Build()
         let activity = new Activity(scope)
-        activity.RecordKey = this.hashProvider.Random()
-        activity.Context = this.contextProvider.Random()
-        activity.Timestamp = randomDate
-        activity.ETag = this.hashProvider.Random()
-        activity.ItemType = "activity"
-        activity.OperationId = this.uuidProvider.Get()
-        activity.BusinessKey = this.hashProvider.Random()
-        activity.Result = this.resultProvider.Random()
-        if (activity.Result !== "Success"){
-            activity.Reason = this.reasonBuilder.InContext(activity.Context).WithResult(activity.Result).Build()
+        activity.recordKey = this.hashProvider.Random()
+        activity.context = this.contextProvider.Random()
+        activity.timestamp = randomDate
+        activity.sourceSystem = this.sourceSystemProvider.Random()
+        activity.eTag = this.hashProvider.Random()
+        activity.itemType = "activity"
+        activity.operationId = this.uuidProvider.Get()
+        activity.businessKey = this.hashProvider.Random()
+        activity.result = this.resultProvider.Random()
+        if (activity.result !== "Success"){
+            activity.reason = this.reasonBuilder.InContext(activity.context).WithResult(activity.result).Build()
         }
         return activity
     }

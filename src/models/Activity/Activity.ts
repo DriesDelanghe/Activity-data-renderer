@@ -4,21 +4,21 @@ import {Service} from "typedi";
 @Service()
 export class Activity {
 
-    RecordKey: string;
-    Context: string;
-    Timestamp: Date;
-    ETag: string;
-    ItemType: string;
-    OperationId: string;
-    BusinessKey: string;
-    Result: string;
-    Reason?: string;
-    Scope: ActivityScope[];
-
+    recordKey: string;
+    context: string;
+    timestamp: Date;
+    eTag: string;
+    itemType: string;
+    operationId: string;
+    businessKey: string;
+    result: string;
+    reason?: string;
+    scope: ActivityScope[];
+    sourceSystem: String;
 
     constructor(Scope?: ActivityScope[]) {
         if (Scope)
-            this.Scope = Scope.map(scope => Object.assign({}, scope));
+            this.scope = Scope.map(scope => Object.assign({}, scope));
     }
 
 }
