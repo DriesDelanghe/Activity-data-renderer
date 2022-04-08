@@ -2,5 +2,10 @@
 
 export enum SourceSystems {
     "Adfinity",
-    "SalesForce"
+    "SalesForce",
+    "Sitecore",
+    "360Learning",
+    "Zoom",
+    "Tickit",
+    "Erpio"
 }
