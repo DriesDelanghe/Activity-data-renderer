@@ -10,6 +10,6 @@ export class ResultProvider{
     }
 
     Random() : string {
-        return this.enumProvider.GetRandom(Result)
+        return this.enumProvider.GetWeightedRandom(Result, {0:0.85, 1:0.1, 2:0.05})
     }
 }
