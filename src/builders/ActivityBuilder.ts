@@ -10,6 +10,8 @@ import {ResultProvider} from "../providers/ResultProvider";
 import {ReasonBuilder} from "./ReasonBuilder";
 import {DurationOptions} from "../models/Inquirer/OptionEnums/DurationOptions";
 import {SourceSystemProvider} from "../providers/SourceSystemProvider";
+import {BusinessEntityTypes} from "../models/Values/BusinessEntityTypes";
+import {BusinessEntityTypeProvider} from "../providers/BusinessEntityTypeProvider";
 
 
 @Service()
@@ -25,19 +27,20 @@ export class ActivityBuilder{
                 private uuidProvider: UuidProvider,
                 private resultProvider: ResultProvider,
                 private reasonBuilder: ReasonBuilder,
-                private sourceSystemProvider: SourceSystemProvider) {
+                private sourceSystemProvider: SourceSystemProvider,
+                private businessEntityTypeProvider: BusinessEntityTypeProvider) {
     }
 
     Build() : Activity {
         const randomDate : Date = this.getRandomDate()
         const scope = this.scopeArrayBuilder.WithArrayLength(this.getScopeLength()).WithEndDate(randomDate).Build()
         let activity = new Activity(scope)
-        activity.recordKey = this.hashProvider.Random()
+        activity.businessEntityType = this.businessEntityTypeProvider.Random()
         activity.context = this.contextProvider.Random()
-        activity.timestamp = randomDate
+        activity.timeStamp = randomDate
         activity.sourceSystem = this.sourceSystemProvider.Random()
         activity.eTag = this.hashProvider.Random()
-        activity.itemType = "activity"
+        activity.itemType = "Activity"
         activity.operationId = this.uuidProvider.Get()
         activity.businessKey = this.hashProvider.Random()
         activity.result = this.resultProvider.Random()

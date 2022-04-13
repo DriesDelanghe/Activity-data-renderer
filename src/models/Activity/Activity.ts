@@ -4,9 +4,9 @@ import {Service} from "typedi";
 @Service()
 export class Activity {
 
-    recordKey: string;
+    businessEntityType: string;
     context: string;
-    timestamp: Date;
+    timeStamp: Date;
     eTag: string;
     itemType: string;
     operationId: string;
